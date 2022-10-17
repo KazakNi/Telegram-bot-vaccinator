@@ -22,8 +22,9 @@ keyboard = [
         [InlineKeyboardButton("Вернуться в меню", callback_data='MENU')],
     ]
 keyboard_menu_restart = [
-        [InlineKeyboardButton("Отменить", callback_data='STOP')],
-        [InlineKeyboardButton("Спросить заново", callback_data='RESTART')],
+        [InlineKeyboardButton("Отменить", callback_data='STOP'),
+         InlineKeyboardButton("Спросить заново", callback_data='RESTART')],
+        [InlineKeyboardButton("Вернуться в меню", callback_data='MENU')],
         ]
 
 reply_keyboard = [
