@@ -172,6 +172,10 @@ def faq_answer(update: Update, context: CallbackContext):
         query.message.edit_text('Пожалуйста, выберите интересующий Вас номер '
                                 'вопроса:', reply_markup=inline_markup)
         return FAQ
+    if str(update.callback_query.data) in ('MENU'):
+        query.message.reply_text('Пожалуйста, выберите интересующий Вас '
+                                 'вопрос:', reply_markup=markup_menu)
+        return CHOOSING
     else:
         answer_num = query.data
         query.answer()
