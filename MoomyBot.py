@@ -197,7 +197,7 @@ def cancel(update: Update, context: CallbackContext):
     else:
         user = update.message.from_user
         update.message.reply_text(f'До свидания, {user["first_name"]},'
-                                  'хорошего дня!',
+                                  'хорошего дня! \xF0\x9F\x98\x8A',
                                   reply_markup=remove_keyboard)
     mylogger.info('Пользователь завершил беседу')
     return ConversationHandler.END
