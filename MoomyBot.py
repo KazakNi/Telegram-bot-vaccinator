@@ -73,10 +73,9 @@ def choice_action(update: Update, context: CallbackContext):
                                   reply_markup=markup_category)
         return AGE
     elif update.message.text.lower() in ['частые вопросы']:
-        '''InlineKeyBoard с выбором, передаем ответ в FAQ'''
-        update.message.reply_text("Частые вопросы:")
-        update.message.reply_text('Пожалуйста, выберите интересующий Вас номер'
-                                  'вопроса:', reply_markup=inline_markup)
+        update.message.reply_text('Пожалуйста, выберите интересующий'
+                                  'Вас номер вопроса:',
+                                  reply_markup=inline_markup)
         return FAQ
     elif update.message.text.lower() in ['связаться с врачом']:
         update.message.reply_text(text='<a href="https://vk.com/i.ulybayas">'
@@ -119,7 +118,8 @@ def age_category(update: Update, context: CallbackContext):
                                   reply_markup=markup_age_child)
         return VACCINE
     elif update.message.text.lower() in 'в меню':
-        update.message.reply_text('Пожалуйста, выберите интересующий вопрос',
+        update.message.reply_text('Пожалуйста, выберите интересующий'
+                                  'Вас вопрос',
                                   reply_markup=markup_menu)
         return CHOOSING
     else:
@@ -179,8 +179,7 @@ def faq_answer(update: Update, context: CallbackContext):
     else:
         answer_num = query.data
         query.answer()
-        query.edit_message_text(text=f'Вопрос: '
-                                     f'\n\nОтвет: {faq[answer_num]}',
+        query.edit_message_text(text=f'\n\nОтвет: {faq[answer_num]}',
                                 reply_markup=inline_markup_menu_faq)
         return FAQ
 
@@ -197,7 +196,7 @@ def cancel(update: Update, context: CallbackContext):
     else:
         user = update.message.from_user
         update.message.reply_text(f'До свидания, {user["first_name"]},'
-                                  'хорошего дня! \xF0\x9F\x98\x8A',
+                                  'хорошего дня! \uE414',
                                   reply_markup=remove_keyboard)
     mylogger.info('Пользователь завершил беседу')
     return ConversationHandler.END
