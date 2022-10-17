@@ -19,6 +19,7 @@ keyboard = [
         [InlineKeyboardButton(f"{questions[5]}", callback_data='6')],
         [InlineKeyboardButton(f"{questions[6]}", callback_data='7')],
         [InlineKeyboardButton(f"{questions[7]}", callback_data='8')],
+        [InlineKeyboardButton("Вернуться в меню", callback_data='MENU')],
     ]
 keyboard_menu_restart = [
         [InlineKeyboardButton("Отменить", callback_data='STOP')],

@@ -200,13 +200,15 @@ def cancel(update: Update, context: CallbackContext):
 
 
 handler = ConversationHandler(
-        entry_points=[CommandHandler('start', start),
+        entry_points=[CommandHandler('start', start), 
                       MessageHandler(Filters.text('Начать заново'), start)],
         states={
             CHOOSING: [MessageHandler(Filters.text(choice_button),
                                       choice_action),
                        MessageHandler(Filters.regex(fr'[^{ignore}]'),
-                                      clarify_question)],
+                                      clarify_question),
+                       CallbackQueryHandler(choice_action,
+                                            pattern='^[^MENU]')],
             AGE: [MessageHandler(Filters.text(button_age) |
                                  Filters.regex(r'\w'), age_category)],
             VACCINE: [MessageHandler(Filters.regex(r'\d'), result),
