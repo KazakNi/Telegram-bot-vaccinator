@@ -1,0 +1,66 @@
+
+
+
+
+'''vaccine = row[1]
+        V1 = row[2]
+        V2 = row[3]
+        V3 = row[4]
+        RV1 = row[5]
+        RV2 = row[6]
+        RV3 = row[7]
+        end_age = row[8]
+        V2_text = row[9]
+        V3_text = row[10]
+        RV1_text = row[11]
+        RV2_text = row[12]
+        RV3_text = row[13]'''
+
+res = cur.execute('SELECT * FROM vaccines') #Запрос в базу на основе возраста первого введения вакцины ('SELECT COUNT(*) FROM vaccines WHERE start_age < ?', (age,))
+#"{0:.{1}f}".format(x,n)
+con = sqlite3.connect('vaccine.sqlite')
+cur = con.cursor()
+cur.execute('DROP TABLE IF EXISTS vaccines;')
+cur.execute("""
+    CREATE TABLE IF NOT EXISTS vaccines(
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    start_age INTEGER,
+    V2_span FLOAT,
+    V3_span FLOAT,
+    RV_1_span FLOAT,
+    RV_2_span FLOAT,
+    RV_3_span FLOAT,
+    end_age INTEGER,
+    V2_text TEXT,
+    V3_text TEXT,
+    RV1_text TEXT,
+    RV2_text TEXT,
+    RV3_text TEXT
+    ); 
+""")
+vaccines_list = [
+    (1, 'Туберкулёз', 0, None, None, None, None, None, None, None, None, None, None, None),
+    (2, 'Вирусный гепатит B', 0, 1, 5, None, None, None, None, '1 месяц', '5 месяцев', None, None, None),
+    (3, 'Ротавирусная инфекция', 2, 1, 1.5, None, None, None, None, '1 месяц', '1.5 месяца', None, None, None),
+    (4, 'Пневмококковая инфекция', 2, 2.5, None, 10.5, None, None, None, '2.5 месяца', None, '10.5 месяцев', None, None),
+    (5, 'Коклюш', 3, 4.5, 6, 18, 72, None, None, '1.5 месяца', '1.5 месяца', '1 год', '5-6 лет', None),
+    (6, 'Дифтерия', 3, 4.5, 6, 18, 72, 168, None, '1.5 месяца', '1.5 месяца', '1 год', '5-6 лет', '7-8 лет'),
+    (7, 'Столбняк', 3, 4.5, 6, 18, 72, 168, None, '1.5 месяца', '1.5 месяца', '1 год', '5-6 лет', '7-8 лет'),
+    (8, 'Полиомиелит', 3, 4.5, 6, 18, 20, 72, None, '1.5 месяца', '1.5 месяца', '1 год', '2 месяца', '4,3 года'),
+    (9, 'Гемофильная инфекция', 3, 4.5, 6, 18, None, None, None, '1.5 месяца', '1.5 месяца', '1 год', None, None),
+    (10, 'Корь', 12, None, None, 72, None, None, None, '1.5 месяца', '1.5 месяца', '5 лет', None, None),
+    (11, 'Краснуха', 12, None, None, 72, None, None, None, '1.5 месяца', '1.5 месяца', '5 лет', None, None),
+    (12, 'Эпидемический паротит', 12, None, None, 72, None, None, None, '1.5 месяца', '1.5 месяца', '5 лет', None, None),
+    (13, 'Менингококковая инфекция', 36, None, None, None, None, None, 72, None, None, None, None, None),
+    (14, 'Вирусный гепатит A', 3, None, None, None, None, None, 72, None, None, None, None, None),
+    (15, 'Ветряная оспа', 12, None, None, None, None, None, 72, None, None, None, None, None),
+    (16, 'Грипп', 6, None, None, None, None, None, 204, None, None, None, None, None),
+    (17, 'Вирус папилломы человека', 144, None, None, None, None, None, 156, None, None, None, None, None),
+
+
+]
+
+cur.executemany('INSERT INTO vaccines VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);', vaccines_list)
+con.commit()
+con.close()
