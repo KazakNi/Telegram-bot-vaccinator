@@ -46,8 +46,8 @@ def start(update: Update, context: CallbackContext):
     mylogger.info('Бот запущен')
     user = update.message.from_user
     update.message.reply_text(f"Здравствуйте, {user['first_name']},"
-                              "Вас приветствует бот-помощник по"
-                              "вакцинопрофилактике, пожалуйста,"
+                              " Вас приветствует бот-помощник по "
+                              "вакцинопрофилактике, пожалуйста, "
                               "выберите интересующий вопрос",
                               reply_markup=markup_menu)
     return CHOOSING
@@ -171,15 +171,14 @@ def faq_answer(update: Update, context: CallbackContext):
 
     query = update.callback_query
     if str(update.callback_query.data) in ('RESTART'):
-        query.message.edit_text('Пожалуйста, выберите интересующий Вас номер'
+        query.message.edit_text('Пожалуйста, выберите интересующий Вас номер '
                                 'вопроса:', reply_markup=inline_markup)
         return FAQ
     else:
         answer_num = query.data
         query.answer()
         query.edit_message_text(text=f'Вопрос: '
-                                     f'{questions[(int(query.data)-1)]}'
-                                f'\n\nОтвет: {faq[answer_num]}',
+                                     f'\n\nОтвет: {faq[answer_num]}',
                                 reply_markup=inline_markup_menu_faq)
         return FAQ
 

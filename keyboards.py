@@ -1,5 +1,6 @@
 from telegram import (ReplyKeyboardMarkup, InlineKeyboardMarkup,
                       InlineKeyboardButton)
+from faq_base import questions
 ignore = r'''Рекомендуемые прививки|Частые вопросы|Связаться с врачом
 |Начать заново|Отменить|RESTART|Рассчитать заново|Показать график|/help|В меню
 '''
@@ -10,14 +11,14 @@ choice_button = ['Рекомендуемые прививки', 'Частые в
                  'Связаться с врачом', 'В меню', 'Показать график',
                  'Рассчитать заново']
 keyboard = [
-        [InlineKeyboardButton("№1", callback_data='1'),
-         InlineKeyboardButton("№2", callback_data='2'), ],
-        [InlineKeyboardButton("№3", callback_data='3'),
-         InlineKeyboardButton("№4", callback_data='4'), ],
-        [InlineKeyboardButton("№5", callback_data='5'),
-         InlineKeyboardButton("№6", callback_data='6'), ],
-        [InlineKeyboardButton("№7", callback_data='7'),
-         InlineKeyboardButton("№8", callback_data='8'), ],
+        [InlineKeyboardButton(f"{questions[0]}", callback_data='1'),
+         InlineKeyboardButton(f"{questions[1]}", callback_data='2'), ],
+        [InlineKeyboardButton(f"{questions[2]}", callback_data='3'),
+         InlineKeyboardButton(f"{questions[3]}", callback_data='4'), ],
+        [InlineKeyboardButton(f"{questions[4]}", callback_data='5'),
+         InlineKeyboardButton(f"{questions[5]}", callback_data='6'), ],
+        [InlineKeyboardButton(f"{questions[6]}", callback_data='7'),
+         InlineKeyboardButton(f"{questions[7]}", callback_data='8'), ],
     ]
 keyboard_menu_restart = [
         [InlineKeyboardButton("Отменить", callback_data='STOP')],
