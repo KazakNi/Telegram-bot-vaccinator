@@ -75,8 +75,6 @@ def choice_action(update: Update, context: CallbackContext):
     elif update.message.text.lower() in ['частые вопросы']:
         '''InlineKeyBoard с выбором, передаем ответ в FAQ'''
         update.message.reply_text("Частые вопросы:")
-        for question in questions:
-            update.message.reply_text(f"{question}")
         update.message.reply_text('Пожалуйста, выберите интересующий Вас номер'
                                   'вопроса:', reply_markup=inline_markup)
         return FAQ
