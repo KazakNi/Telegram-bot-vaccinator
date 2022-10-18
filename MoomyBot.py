@@ -1,3 +1,4 @@
+from cgitb import text
 from dotenv import load_dotenv
 from faq_base import faq, questions
 from keyboards import (
@@ -21,7 +22,7 @@ from telegram.ext import (CallbackContext, CallbackQueryHandler,
                           CommandHandler, ConversationHandler, Filters,
                           MessageHandler,
                           Updater)
-from telegram import ReplyKeyboardRemove, ParseMode, Update
+from telegram import ReplyKeyboardRemove, ParseMode, Sticker, Update
 from utils import vaccine_schedule
 
 
@@ -109,7 +110,7 @@ def clarify_question(update: Update, context: CallbackContext):
 def age_category(update: Update, context: CallbackContext):
     '''Уточнение возрастной категории для получения списка прививок.'''
     context.user_data['age_dimension'] = update.message.text
-    if update.message.text.lower() in '0-24 месяца':
+    if update.message.text.lower() in '0-23 месяца':
         update.message.reply_text('Выберите возраст',
                                   reply_markup=markup_age_infant)
         return VACCINE
@@ -118,12 +119,12 @@ def age_category(update: Update, context: CallbackContext):
                                   reply_markup=markup_age_child)
         return VACCINE
     elif update.message.text.lower() in 'в меню':
-        update.message.reply_text('Пожалуйста, выберите интересующий'
+        update.message.reply_text('Пожалуйста, выберите интересующий '
                                   'Вас вопрос',
                                   reply_markup=markup_menu)
         return CHOOSING
     else:
-        update.message.reply_text('Пожалуйста, выберите из предлагаемого'
+        update.message.reply_text('Пожалуйста, выберите из предлагаемого '
                                   'диапазона', reply_markup=markup_category)
         return AGE
 
@@ -140,7 +141,7 @@ def result(update: Update, context: CallbackContext):
     regex = re.compile('^[0-9]')
     result = regex.match(update.message.text)
     age_dimension = context.user_data['age_dimension']
-    if not result and age_dimension in '0-24 месяца':
+    if not result and age_dimension in '0-23 месяца':
         update.message.reply_text('Пожалуйста, введите число месяцев',
                                   reply_markup=markup_age_infant)
         return VACCINE
@@ -148,7 +149,7 @@ def result(update: Update, context: CallbackContext):
         update.message.reply_text('Пожалуйста, введите число лет',
                                   reply_markup=markup_age_child)
         return VACCINE
-    elif age_dimension in '0-24 месяца' and int(update.message.text) > 24:
+    elif age_dimension in '0-23 месяца' and int(update.message.text) > 24:
         update.message.reply_text('Пожалуйста, введите целое число до 2',
                                   reply_markup=markup_exit)
         return VACCINE
@@ -206,6 +207,17 @@ def cancel(update: Update, context: CallbackContext):
     return ConversationHandler.END
 
 
+def secret_word(update: Update, context: CallbackContext):
+    context.bot.send_message(chat_id=update.effective_message.chat_id,
+                             text='Чат-бот разработан Казаковым Никитой.\n'
+                             'Протестирован Пархоменко Владом, спасибо ему :)')
+
+    context.bot.send_sticker(chat_id=update.effective_message.chat_id,
+                             sticker='https://cdn.tlgrm.app/stickers/a9a/146'
+                             '/a9a1468d-6946-37c0-a1a6-13ed601a8685/192/1.webp'
+                             )
+
+
 handler = ConversationHandler(
         entry_points=[CommandHandler('start', start), 
                       MessageHandler(Filters.text('Начать заново'), start)],
@@ -239,6 +251,8 @@ def main() -> None:
     """Start the bot."""
     updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
+    dispatcher.add_handler(MessageHandler(Filters.regex(r'^Разработчик'),
+                                          secret_word))
     dispatcher.add_handler(handler)
     dispatcher.add_handler(CommandHandler("help", help))
     updater.start_polling()

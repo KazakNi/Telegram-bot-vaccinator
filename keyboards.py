@@ -6,7 +6,7 @@ ignore = r'''Рекомендуемые прививки|Частые вопро
 '''
 ignore_vaccine = r'''Рекомендуемые прививки|Частые вопросы|Связаться с врачом
 |Начать заново|Отменить|RESTART|Показать график|/help'''
-button_age = ['0-24 месяца', '2-17 лет', 'В меню']
+button_age = ['0-23 месяца', '2-17 лет', 'В меню']
 choice_button = ['Рекомендуемые прививки', 'Частые вопросы',
                  'Связаться с врачом', 'В меню', 'Показать график',
                  'Рассчитать заново']
@@ -40,9 +40,9 @@ reply_keyboard_vaccine = [['Отменить', 'Рассчитать занов�
 markup_vaccine = ReplyKeyboardMarkup(reply_keyboard_vaccine,
                                      one_time_keyboard=True,
                                      resize_keyboard=True)
-keyboard_infant_category = [['0-24 месяца', '2-17 лет'], ['В меню']]
+keyboard_infant_category = [['0-23 месяца', '2-17 лет'], ['В меню']]
 keyboard_ages_child = [range(2, 10), range(10, 18), ['В меню']]
-keyboard_ages_infant = [range(1, 9), range(9, 17), range(17, 25), ['В меню']]
+keyboard_ages_infant = [range(0, 9), range(9, 17), range(17, 24), ['В меню']]
 markup_age_infant = ReplyKeyboardMarkup(keyboard_ages_infant,
                                         one_time_keyboard=True,
                                         resize_keyboard=True)
