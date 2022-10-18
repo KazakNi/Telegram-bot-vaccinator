@@ -45,24 +45,24 @@ CHOOSING, AGE, VACCINE, FAQ, CANCEL, HELP = range(6)
 def start(update: Update, context: CallbackContext):
     mylogger.info('Бот запущен')
     user = update.message.from_user
-    update.message.reply_text(f"Здравствуйте, {user['first_name']},"
-                              " Вас приветствует бот-помощник по "
+    update.message.reply_text(f"Здравствуйте, {user['first_name']}! "
+                              "Вас приветствует бот-помощник по "
                               "вакцинопрофилактике, пожалуйста, "
-                              "выберите интересующий вопрос",
+                              "выберите интересующий вопрос. 😊",
                               reply_markup=markup_menu)
     return CHOOSING
 
 
 def help(update: Update, context: CallbackContext):
-    update.message.reply_text('Справка:\nВся информация от бота носит'
-                              'ориентировочный характер и не является'
-                              'врачебным предписанием, для дальнейшей'
-                              'консультации с врачом Вы можете воспользоваться'
-                              'кнопкой связи в меню.\nV1 — первый компонент'
+    update.message.reply_text('Справка:\nВся информация от бота носит '
+                              'ориентировочный характер и не является '
+                              'врачебным предписанием, для дальнейшей '
+                              'консультации с врачом Вы можете '
+                              'воспользоваться '
+                              'кнопкой связи в меню.\nV1 — первый компонент '
                               'вакцины.\nV2 — второй.\nV3 — третий.'
                               '\nRV1 — первый компонент ревакцинации.\nRV2 —'
-                              'второй.\nRV3 — третий.',
-                              reply_markup=markup_menu)
+                              'второй.\nRV3 — третий.')
     return CHOOSING
 
 
@@ -100,7 +100,7 @@ def choice_action(update: Update, context: CallbackContext):
 
 
 def clarify_question(update: Update, context: CallbackContext):
-    update.message.reply_text('Простите, сообщение не распознано, пожалуйста,'
+    update.message.reply_text('Простите, сообщение не распознано, пожалуйста, '
                               'выберите опцию меню', reply_markup=markup_menu)
     mylogger.warning(f'Ввод пользователя не распознан: {update.message.text}')
     return CHOOSING
@@ -194,12 +194,13 @@ def cancel(update: Update, context: CallbackContext):
     query = update.callback_query
     if query:
         user = query.from_user
-        query.message.reply_text(f'До свидания, {user["first_name"]},'
-                                 'хорошего дня!', reply_markup=remove_keyboard)
+        query.message.reply_text(f'До свидания, {user["first_name"]}, '
+                                 'хорошего дня 😊!', 
+                                 reply_markup=remove_keyboard)
     else:
         user = update.message.from_user
         update.message.reply_text(f'До свидания, {user["first_name"]},'
-                                  'хорошего дня! \uE414',
+                                  'хорошего дня! 😊',
                                   reply_markup=remove_keyboard)
     mylogger.info('Пользователь завершил беседу')
     return ConversationHandler.END
