@@ -73,7 +73,7 @@ def choice_action(update: Update, context: CallbackContext):
                                   reply_markup=markup_category)
         return AGE
     elif update.message.text.lower() in ['частые вопросы']:
-        update.message.reply_text('Пожалуйста, выберите интересующий'
+        update.message.reply_text('Пожалуйста, выберите интересующий '
                                   'Вас номер вопроса:',
                                   reply_markup=inline_markup)
         return FAQ
@@ -179,8 +179,11 @@ def faq_answer(update: Update, context: CallbackContext):
     else:
         answer_num = query.data
         query.answer()
-        query.edit_message_text(text=f'\n\nОтвет: {faq[answer_num]}',
-                                reply_markup=inline_markup_menu_faq)
+        query.edit_message_text(text=f'\nВопрос №'
+                                     f'<b>{questions[int(answer_num)-1]}</b>\n'
+                                     f'\nОтвет: {faq[answer_num]}',
+                                reply_markup=inline_markup_menu_faq,
+                                parse_mode=ParseMode.HTML)
         return FAQ
 
 
