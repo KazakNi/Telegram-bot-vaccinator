@@ -40,7 +40,7 @@ mylogger.setLevel(logging.DEBUG)
 
 TOKEN = os.getenv('TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
-CHOOSING, AGE, VACCINE, FAQ, CANCEL, HELP = range(6)
+CHOOSING, AGE, VACCINE, FAQ = range(4)
 
 
 def start(update: Update, context: CallbackContext):
