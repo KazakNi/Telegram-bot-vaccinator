@@ -1,4 +1,5 @@
 # Бот-помощник по вакцинопрофилактике
+<img src="https://sun9-61.userapi.com/impf/oGCzth8ZrdEcKrsDpYq4msm3BCcjuuazDFpXRg/5fjzTKL8gtw.jpg?size=1080x1080&quality=96&sign=38cf9d97b72f0c81cdbc36ce9d73a0c6&type=album" width="400" height="400"/>
 <details>
   <summary>Click me</summary>
   
