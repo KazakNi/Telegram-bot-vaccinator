@@ -1,4 +1,4 @@
-# Telegram-bot-vaccinator
+# Бот-помощник по вакцинопрофилактике
 <details>
   <summary>Click me</summary>
   
