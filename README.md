@@ -31,6 +31,12 @@
    /help # полезная информация о боте
    ```
 
+Примеры ответов бота:
+
+<img src="https://sun9-83.userapi.com/impg/4JN5PaF5vkN5ins9wwIOS61UBrDXB-wVPjCPDA/lPPVZ0OpAls.jpg?size=1125x1102&quality=95&sign=c81f70d613d5a22a0781e8f2fba46330&type=album" width="400" height="400"/>
+
+<img src="https://sun9-80.userapi.com/impg/Cm9smcyDvZUEq0KRkkl24ezCCIssAcK4jZs1cw/8AsZYB4DguM.jpg?size=1113x2160&quality=95&sign=3e3e8cae3ef2aaf1c9aba7fc172defed&type=album" width="400" height="800"/>
+
 ## License
 
 MIT
