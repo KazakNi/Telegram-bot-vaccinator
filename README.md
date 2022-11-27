@@ -31,7 +31,7 @@
    /help # полезная информация о боте
    ```
 
-Примеры ответов бота:
+### Примеры ответов бота:
 
 <img src="https://sun9-83.userapi.com/impg/4JN5PaF5vkN5ins9wwIOS61UBrDXB-wVPjCPDA/lPPVZ0OpAls.jpg?size=1125x1102&quality=95&sign=c81f70d613d5a22a0781e8f2fba46330&type=album" width="400" height="400"/>
 
